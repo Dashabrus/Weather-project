@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Wireframe</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="Wireframe_css.css">
+  </head>
+  <body>
+    <h1 id="heading"></h1>
+    <p class="currentdt"></p> 
+   
+      <div class="current_temp"><span id="current-Number"></span><a href="#" id="celsius">°C</a>&#124;<a href="#" id ="farenheit">°F</a></div>
+      <div class="hl"></div> 
+      <div class="description"></div>
+  <p class="emojii_main">🌤</p>
+    <form class="city-form">
+  <input type="text" class="form-control" id="formInput" placeholder="🔍 Search for a city..." autocomplete="off">
+  
+   </form>
+    <span id="page">
+     <button class="currentLocation">📍 Location </button>
+      
+    </span>
+    <div class="feels"></div>
+    <div class="climate">
+      <span id="windSpeed"></span>
+      <br />
+      <span id="hum"></span>
+    </div>
+    <div class="container">
+  <div class="row">
+    <div class="col">
+        <div class="card" style="width: 8rem;">
+        <p class="emojii">🌤</p>
+            <div class="card-body">
+            <p class="card-text">
+            H:19°
+            <br/>
+            L:8°
+            <br />
+            Mon
+            </p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="width: 8rem;">
+            <p class="emojii">🌧</p>
+            <div class="card-body">
+            <p class="card-text">
+            H:16°
+            <br/>
+            L:7°
+            <br />
+            Tue
+            </p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="width: 8rem;">
+            <p class="emojii">☀️</p>
+            <div class="card-body">
+            <p class="card-text">
+            H:21°
+            <br/>
+            L:11°
+            <br />
+            Wed
+            </p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="width: 8rem;">
+            <p class="emojii">☀️</p>
+            <div class="card-body">
+            <p class="card-text">
+            H:23°
+            <br/>
+            L:12°
+            <br />
+            Thu
+            </p>
+            </div>
+        </div>
+    </div>
+     <div class="col">
+         <div class="card" style="width: 8rem;">
+            <p class="emojii">🌦</p>
+            <div class="card-body">
+            <p class="card-text">
+            H:18°
+            <br/>
+            L:10°
+            <br />
+            Fri
+            </p>
+            </div>
+        </div>
+     </div>
+     <div class="col">
+         <div class="card" style="width: 8rem;">
+            <p class="emojii">☁️</p>
+            <div class="card-body">
+            <p class="card-text">
+            H:16°
+            <br/>
+            L:8°
+            <br />
+            Sat
+            </p>
+            </div>
+        </div>
+     </div>
+  </div>
+  <script src="Wireframe_js.js">  </script>
+  </body>
+</html>
