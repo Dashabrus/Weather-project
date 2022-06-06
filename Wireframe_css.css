@@ -20,11 +20,10 @@ form {
 
 #page {
   position: absolute;
-  right: 0;
-  top: 0;
-  display: inline;
-  margin: 20px;
-  padding: 25px;
+  display: block;
+  left: 85px;
+  bottom: 45px;
+  margin-bottom: 5px;
 }
 
 .form-control {
