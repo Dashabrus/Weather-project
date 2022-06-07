@@ -28,8 +28,7 @@ let date = now.getDate();
 let month = months[now.getMonth()];
 let hours = now.getHours();
 let minutes = now.getMinutes();
-let seconds = now.getSeconds();
-dateTime.innerHTML = `${day}, ${date}.${month} ${hours}:${minutes}:${seconds}`;
+dateTime.innerHTML = `${day}, ${date}.${month} ${hours}:${minutes}`;
 
 function showWeather(response) {
   let city = document.querySelector("#heading");
@@ -54,6 +53,89 @@ function showWeather(response) {
     response.data.weather[0].description.charAt(0).toUpperCase() +
     response.data.weather[0].description.slice(1)
   }"`;
+  let emojiiElement = document.querySelector(`.emojii_main`);
+  if (response.data.weather[0].description === `clear sky`) {
+    emojiiElement.innerHTML = `☀️`;
+  } else if (response.data.weather[0].description === `few clouds`) {
+    emojiiElement.innerHTML = `🌤`;
+  } else if (response.data.weather[0].description === `scattered clouds`) {
+    emojiiElement.innerHTML = `⛅️`;
+  } else if (response.data.weather[0].description === `broken clouds`) {
+    emojiiElement.innerHTML = `🌥`;
+  } else if (response.data.weather[0].description === `overcast clouds`) {
+    emojiiElement.innerHTML = `☁️`;
+  } else if (
+    response.data.weather[0].description === `thunderstorm with rain` ||
+    `thunderstorm with heavy rain` ||
+    `thunderstorm with drizzle` ||
+    `hunderstorm with heavy drizzle`
+  ) {
+    emojiiElement.innerHTML = `⛈`;
+  } else if (
+    response.data.weather[0].description === `light rain` ||
+    `moderate rain` ||
+    `heavy intensity rain` ||
+    `very heavy rain` ||
+    `extreme rain`
+  ) {
+    emojiiElement.innerHTML = `🌦`;
+  } else if (
+    response.data.weather[0].description === `freezing rain` ||
+    `sleet` ||
+    `light shower sleet` ||
+    `shower sleet` ||
+    `light rain and snow` ||
+    `rain and snow`
+  ) {
+    emojiiElement.innerHTML = `🌨`;
+  } else if (
+    response.data.weather[0].description === ` light snow ` ||
+    `snow` ||
+    `heavy snow` ||
+    `light shower snow` ||
+    `shower snow` ||
+    `heavy shower snow`
+  ) {
+    emojiiElement.innerHTML = `❄️`;
+  } else if (
+    response.data.weather[0].description === `thunderstorm with light rain` ||
+    `light thunderstorm` ||
+    `thunderstorm` ||
+    `heavy thunderstorm` ||
+    `ragged thunderstorm` ||
+    `thunderstorm with light drizzle`
+  ) {
+    emojiiElement.innerHTML = `🌩`;
+  } else if (
+    response.data.weather[0].description === `mist` ||
+    `smoke` ||
+    `haze` ||
+    `sand/ dust whirls` ||
+    `fog` ||
+    `sand` ||
+    `dust` ||
+    `volcanic ash`
+  ) {
+    emojiiElement.innerHTML = `🌫`;
+  } else if (
+    response.data.weather[0].description === `light intensity drizzle` ||
+    `drizzle` ||
+    `heavy intensity drizzle` ||
+    `light intensity drizzle rain` ||
+    `drizzle rain` ||
+    `heavy intensity drizzle rain` ||
+    `shower rain and drizzle` ||
+    `heavy shower rain and drizzle` ||
+    `shower drizzle` ||
+    `light intensity shower rain` ||
+    `shower rain` ||
+    `heavy intensity shower rain` ||
+    `ragged shower rain`
+  ) {
+    emojiiElement.innerHTML = `🌧`;
+  } else {
+    emojiiElement.innerHTML = `🌪`;
+  }
 }
 
 function searchCity(city) {
