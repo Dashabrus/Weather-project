@@ -101,14 +101,15 @@ form {
   top: 100px;
 }
 
-#farenheit {
+#fahrenheit {
   color: #676a6b;
   text-decoration: none;
 }
 
-#farenheit:hover {
+#fahrenheit:hover {
   color: #163541;
 }
+
 #celsius {
   color: #676a6b;
   text-decoration: none;

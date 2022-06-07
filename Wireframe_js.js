@@ -27,32 +27,40 @@ let day = days[now.getDay()];
 let date = now.getDate();
 let month = months[now.getMonth()];
 let hours = now.getHours();
+if (hours < 10) {
+  hours = `0${hours}`;
+}
 let minutes = now.getMinutes();
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
 dateTime.innerHTML = `${day}, ${date}.${month} ${hours}:${minutes}`;
 
 function showWeather(response) {
   let city = document.querySelector("#heading");
-  city.innerHTML = `${response.data.name}`;
-  let temperature = Math.round(response.data.main.temp);
   let temperatureValue = document.querySelector("#current-Number");
-  temperatureValue.innerHTML = temperature;
   let feelsLike = document.querySelector(".feels");
-  feelsLike.innerHTML = `Feels like ${Math.round(
-    response.data.main.feels_like
-  )}° C`;
   let humidity = document.querySelector("#hum");
-  humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
   let wind = document.querySelector("#windSpeed");
-  wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
   let highest = Math.round(response.data.main.temp_max);
   let lowest = Math.round(response.data.main.temp_min);
   let hl = document.querySelector(".hl");
-  hl.innerHTML = `H:${highest}° L:${lowest}°`;
   let description = document.querySelector(".description");
+
+  feelsLike.innerHTML = `Feels like ${Math.round(
+    response.data.main.feels_like
+  )}° C`;
+  temperatureValue.innerHTML = Math.round(response.data.main.temp);
+  humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
+  hl.innerHTML = `H:${highest}° L:${lowest}°`;
+  wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
+  city.innerHTML = `${response.data.name}`;
   description.innerHTML = `"${
     response.data.weather[0].description.charAt(0).toUpperCase() +
     response.data.weather[0].description.slice(1)
   }"`;
+  celsiusTemp = Math.round(response.data.main.temp);
+
   let emojiiElement = document.querySelector(`.emojii_main`);
   if (response.data.weather[0].description === `clear sky`) {
     emojiiElement.innerHTML = `☀️`;
@@ -143,11 +151,13 @@ function searchCity(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showWeather);
 }
+
 function submitting(event) {
   event.preventDefault();
   let city = document.querySelector("#formInput").value;
   searchCity(city);
 }
+
 let form = document.querySelector(".city-form");
 form.addEventListener("submit", submitting);
 
@@ -158,6 +168,7 @@ function positionTemp(position) {
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   axios.get(url).then(showWeather);
 }
+
 function getCurrentPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(positionTemp);
@@ -166,21 +177,25 @@ function getCurrentPosition(event) {
 let button = document.querySelector(".currentLocation");
 button.addEventListener("click", getCurrentPosition);
 
+function showFahrenheit(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#current-Number");
+  let fahrenheitTemperature = Math.round(celsiusTemp * 1.8 + 32);
+  tempElement.innerHTML = fahrenheitTemperature;
+}
+
+function showCelsius(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#current-Number");
+  tempElement.innerHTML = celsiusTemp;
+}
+
+let celsiusTemp = null;
+
+let fahrenheitButton = document.querySelector("#fahrenheit");
+fahrenheitButton.addEventListener("click", showFahrenheit);
+
+let celsiusButton = document.querySelector("#celsius");
+celsiusButton.addEventListener("click", showCelsius);
+
 searchCity("Kyiv");
-
-//let temp = 18;
-//function changeF(event) {
-//event.preventDefault();
-//let fahrenheit = Math.round(temp * 1.8 + 32);
-//let numberF = document.querySelector("#current-Number");
-//numberF.innerHTML = `${fahrenheit}`;}
-//let fahrenheitButton = document.querySelector("#farenheit");
-//fahrenheitButton.addEventListener("click", changeF);
-
-//function changeC(event) {
-//event.preventDefault();
-//let celsius = temp;
-//let numberC = document.querySelector("#current-Number");
-//numberC.innerHTML = `${celsius}`;}
-//let celsiusButton = document.querySelector("#celsius");
-//celsiusButton.addEventListener("click", changeC);
