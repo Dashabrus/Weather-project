@@ -20,10 +20,10 @@ form {
 }
 
 #page {
-  position: absolute;
+  position: relative;
   display: block;
-  left: 1280px;
-  bottom: 740px;
+  left: 1240px;
+  bottom: 270px;
 }
 
 .form-control {
