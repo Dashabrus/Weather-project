@@ -36,6 +36,13 @@ if (minutes < 10) {
 }
 dateTime.innerHTML = `${day}, ${date}.${month} ${hours}:${minutes}`;
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 function showWeather(response) {
   let city = document.querySelector("#heading");
   let temperatureValue = document.querySelector("#current-Number");
@@ -62,16 +69,22 @@ function showWeather(response) {
   celsiusTemp = Math.round(response.data.main.temp);
 
   let emojiiElement = document.querySelector(`.emojii_main`);
+  let emojiis = document.querySelector(`.emojii`);
   if (response.data.weather[0].description === `clear sky`) {
     emojiiElement.innerHTML = `☀️`;
+    emojiis = `☀️`;
   } else if (response.data.weather[0].description === `few clouds`) {
     emojiiElement.innerHTML = `🌤`;
+    emojiis = `🌤`;
   } else if (response.data.weather[0].description === `scattered clouds`) {
     emojiiElement.innerHTML = `⛅️`;
+    emojiis = `⛅️`;
   } else if (response.data.weather[0].description === `broken clouds`) {
     emojiiElement.innerHTML = `🌥`;
+    emojiis = `🌥`;
   } else if (response.data.weather[0].description === `overcast clouds`) {
     emojiiElement.innerHTML = `☁️`;
+    emojiis = `☁️`;
   } else if (
     response.data.weather[0].description === `thunderstorm with rain` ||
     `thunderstorm with heavy rain` ||
@@ -79,6 +92,7 @@ function showWeather(response) {
     `hunderstorm with heavy drizzle`
   ) {
     emojiiElement.innerHTML = `⛈`;
+    emojiis = `⛈`;
   } else if (
     response.data.weather[0].description === `light rain` ||
     `moderate rain` ||
@@ -87,6 +101,7 @@ function showWeather(response) {
     `extreme rain`
   ) {
     emojiiElement.innerHTML = `🌦`;
+    emojiis = `🌦`;
   } else if (
     response.data.weather[0].description === `freezing rain` ||
     `sleet` ||
@@ -96,6 +111,7 @@ function showWeather(response) {
     `rain and snow`
   ) {
     emojiiElement.innerHTML = `🌨`;
+    emojiis = `🌨`;
   } else if (
     response.data.weather[0].description === ` light snow ` ||
     `snow` ||
@@ -105,6 +121,7 @@ function showWeather(response) {
     `heavy shower snow`
   ) {
     emojiiElement.innerHTML = `❄️`;
+    emojiis = `❄️`;
   } else if (
     response.data.weather[0].description === `thunderstorm with light rain` ||
     `light thunderstorm` ||
@@ -114,6 +131,7 @@ function showWeather(response) {
     `thunderstorm with light drizzle`
   ) {
     emojiiElement.innerHTML = `🌩`;
+    emojiis = `🌩`;
   } else if (
     response.data.weather[0].description === `mist` ||
     `smoke` ||
@@ -125,6 +143,7 @@ function showWeather(response) {
     `volcanic ash`
   ) {
     emojiiElement.innerHTML = `🌫`;
+    emojiis = `🌫`;
   } else if (
     response.data.weather[0].description === `light intensity drizzle` ||
     `drizzle` ||
@@ -141,9 +160,36 @@ function showWeather(response) {
     `ragged shower rain`
   ) {
     emojiiElement.innerHTML = `🌧`;
+    emojiis.fore = `🌧`;
   } else {
     emojiiElement.innerHTML = `🌪`;
+    emojiis = `🌪`;
   }
+
+  function displayForecast(responce) {
+    let forecast = responce.data.daily;
+    let forecastElement = document.querySelector("#forecast");
+    let forecastHTML = `<div class="row">`;
+    forecast.forEach(function (forecastDay, index) {
+      if (index < 6) {
+        forecastHTML =
+          forecastHTML +
+          `<div class='col'> <div class ="card" style="width: 8rem"> <p class = "emojii">${emojiis}</p> <div class="card-body"<p class = "card-text"> H: ${Math.round(
+            forecastDay.temp.max
+          )}° <br/> L: ${Math.round(forecastDay.temp.min)}° <br/> ${formatDay(
+            forecastDay.dt
+          )} </p> </div></div></div>`;
+      }
+    });
+    forecastHTML = forecastHTML + `</div>`;
+    forecastElement.innerHTML = forecastHTML;
+  }
+  function getForecast(coordinates) {
+    let apiKey = "6a809824c32cedbbe5da28815dd90f96";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayForecast);
+  }
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -180,6 +226,9 @@ button.addEventListener("click", getCurrentPosition);
 function showFahrenheit(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#current-Number");
+  celsiusButton.classList.remove("active");
+  celsiusButton.removeAttribute();
+  fahrenheitButton.classList.add("active");
   let fahrenheitTemperature = Math.round(celsiusTemp * 1.8 + 32);
   tempElement.innerHTML = fahrenheitTemperature;
 }
@@ -187,6 +236,8 @@ function showFahrenheit(event) {
 function showCelsius(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#current-Number");
+  fahrenheitButton.classList.remove("active");
+  celsiusButton.classList.add("active");
   tempElement.innerHTML = celsiusTemp;
 }
 
