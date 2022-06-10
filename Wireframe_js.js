@@ -69,30 +69,28 @@ function showWeather(response) {
   celsiusTemp = Math.round(response.data.main.temp);
 
   let emojiiElement = document.querySelector(`.emojii_main`);
-  let emojiis = document.querySelector(`.emojii`);
+  emojiiElement.innerHTML = getEmojii(response);
+  getForecast(response.data.coord);
+}
+
+function getEmojii(response) {
   if (response.data.weather[0].description === `clear sky`) {
-    emojiiElement.innerHTML = `☀️`;
-    emojiis = `☀️`;
+    return `☀️`;
   } else if (response.data.weather[0].description === `few clouds`) {
-    emojiiElement.innerHTML = `🌤`;
-    emojiis = `🌤`;
+    return `🌤`;
   } else if (response.data.weather[0].description === `scattered clouds`) {
-    emojiiElement.innerHTML = `⛅️`;
-    emojiis = `⛅️`;
+    return `⛅️`;
   } else if (response.data.weather[0].description === `broken clouds`) {
-    emojiiElement.innerHTML = `🌥`;
-    emojiis = `🌥`;
+    return `🌥`;
   } else if (response.data.weather[0].description === `overcast clouds`) {
-    emojiiElement.innerHTML = `☁️`;
-    emojiis = `☁️`;
+    return `☁️`;
   } else if (
     response.data.weather[0].description === `thunderstorm with rain` ||
     `thunderstorm with heavy rain` ||
     `thunderstorm with drizzle` ||
     `hunderstorm with heavy drizzle`
   ) {
-    emojiiElement.innerHTML = `⛈`;
-    emojiis = `⛈`;
+    return `⛈`;
   } else if (
     response.data.weather[0].description === `light rain` ||
     `moderate rain` ||
@@ -100,8 +98,7 @@ function showWeather(response) {
     `very heavy rain` ||
     `extreme rain`
   ) {
-    emojiiElement.innerHTML = `🌦`;
-    emojiis = `🌦`;
+    return `🌦`;
   } else if (
     response.data.weather[0].description === `freezing rain` ||
     `sleet` ||
@@ -110,8 +107,7 @@ function showWeather(response) {
     `light rain and snow` ||
     `rain and snow`
   ) {
-    emojiiElement.innerHTML = `🌨`;
-    emojiis = `🌨`;
+    return `🌨`;
   } else if (
     response.data.weather[0].description === ` light snow ` ||
     `snow` ||
@@ -120,8 +116,7 @@ function showWeather(response) {
     `shower snow` ||
     `heavy shower snow`
   ) {
-    emojiiElement.innerHTML = `❄️`;
-    emojiis = `❄️`;
+    return `❄️`;
   } else if (
     response.data.weather[0].description === `thunderstorm with light rain` ||
     `light thunderstorm` ||
@@ -130,8 +125,7 @@ function showWeather(response) {
     `ragged thunderstorm` ||
     `thunderstorm with light drizzle`
   ) {
-    emojiiElement.innerHTML = `🌩`;
-    emojiis = `🌩`;
+    return `🌩`;
   } else if (
     response.data.weather[0].description === `mist` ||
     `smoke` ||
@@ -142,8 +136,7 @@ function showWeather(response) {
     `dust` ||
     `volcanic ash`
   ) {
-    emojiiElement.innerHTML = `🌫`;
-    emojiis = `🌫`;
+    return `🌫`;
   } else if (
     response.data.weather[0].description === `light intensity drizzle` ||
     `drizzle` ||
@@ -159,43 +152,42 @@ function showWeather(response) {
     `heavy intensity shower rain` ||
     `ragged shower rain`
   ) {
-    emojiiElement.innerHTML = `🌧`;
-    emojiis.fore = `🌧`;
+    return `🌧`;
   } else {
-    emojiiElement.innerHTML = `🌪`;
-    emojiis = `🌪`;
+    return `🌪`;
   }
+}
 
-  function displayForecast(responce) {
-    let forecast = responce.data.daily;
-    let forecastElement = document.querySelector("#forecast");
-    let forecastHTML = `<div class="row">`;
-    forecast.forEach(function (forecastDay, index) {
-      if (index < 6) {
-        forecastHTML =
-          forecastHTML +
-          `<div class='col'> <div class ="card" style="width: 8rem"> <p class = "emojii">${emojiis}</p> <div class="card-body"<p class = "card-text"> H: ${Math.round(
-            forecastDay.temp.max
-          )}° <br/> L: ${Math.round(forecastDay.temp.min)}° <br/> ${formatDay(
-            forecastDay.dt
-          )} </p> </div></div></div>`;
-      }
-    });
-    forecastHTML = forecastHTML + `</div>`;
-    forecastElement.innerHTML = forecastHTML;
-  }
-  function getForecast(coordinates) {
-    let apiKey = "6a809824c32cedbbe5da28815dd90f96";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayForecast);
-  }
-  getForecast(response.data.coord);
+function displayForecast(responce) {
+  let forecast = responce.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class='col'> <div class ="card" style="width: 8rem"> <p class = "emojii">${getEmojii(
+          forecastDay
+        )}</p> <div class="card-body"<p class = "card-text"> H: ${Math.round(
+          forecastDay.temp.max
+        )}° <br/> L: ${Math.round(forecastDay.temp.min)}° <br/> ${formatDay(
+          forecastDay.dt
+        )} </p> </div></div></div>`;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+function getForecast(coordinates) {
+  let apiKey = "6a809824c32cedbbe5da28815dd90f96";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast, getEmojii);
 }
 
 function searchCity(city) {
   let apiKey = "6a809824c32cedbbe5da28815dd90f96";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(`${apiUrl}&appid=${apiKey}`).then(showWeather);
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(showWeather, getEmojii);
 }
 
 function submitting(event) {
@@ -227,7 +219,7 @@ function showFahrenheit(event) {
   event.preventDefault();
   let tempElement = document.querySelector("#current-Number");
   celsiusButton.classList.remove("active");
-  celsiusButton.removeAttribute();
+  celsiusButton.removeAttribute("active");
   fahrenheitButton.classList.add("active");
   let fahrenheitTemperature = Math.round(celsiusTemp * 1.8 + 32);
   tempElement.innerHTML = fahrenheitTemperature;
