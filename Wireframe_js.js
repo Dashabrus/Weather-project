@@ -85,20 +85,17 @@ function getEmojii(response) {
   } else if (response.weather[0].description === `overcast clouds`) {
     return `☁️`;
   } else if (
+    response.weather[0].description === `light rain` ||
+    response.weather[0].description === `moderate rain`
+  ) {
+    return `🌦`;
+  } else if (
     response.weather[0].description === `thunderstorm with rain` ||
     response.weather[0].description === `thunderstorm with heavy rain` ||
     response.weather[0].description === `thunderstorm with drizzle` ||
     response.weather[0].description === `hunderstorm with heavy drizzle`
   ) {
     return `⛈`;
-  } else if (
-    response.weather[0].description === `light rain` ||
-    response.weather[0].description === `moderate rain` ||
-    response.weather[0].description === `heavy intensity rain` ||
-    response.weather[0].description === `very heavy rain` ||
-    response.weather[0].description === `extreme rain`
-  ) {
-    return `🌦`;
   } else if (
     response.weather[0].description === `freezing rain` ||
     response.weather[0].description === `sleet` ||
@@ -109,7 +106,7 @@ function getEmojii(response) {
   ) {
     return `🌨`;
   } else if (
-    response.weather[0].description === ` light snow ` ||
+    response.weather[0].description === `light snow ` ||
     response.weather[0].description === `snow` ||
     response.weather[0].description === `heavy snow` ||
     response.weather[0].description === `light shower snow` ||
@@ -150,7 +147,10 @@ function getEmojii(response) {
     response.weather[0].description === `light intensity shower rain` ||
     response.weather[0].description === `shower rain` ||
     response.weather[0].description === `heavy intensity shower rain` ||
-    response.weather[0].description === `ragged shower rain`
+    response.weather[0].description === `ragged shower rain` ||
+    response.weather[0].description === `heavy intensity rain` ||
+    response.weather[0].description === `very heavy rain` ||
+    response.weather[0].description === `extreme rain`
   ) {
     return `🌧`;
   } else {
