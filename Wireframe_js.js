@@ -86,71 +86,71 @@ function getEmojii(response) {
     return `☁️`;
   } else if (
     response.weather[0].description === `thunderstorm with rain` ||
-    `thunderstorm with heavy rain` ||
-    `thunderstorm with drizzle` ||
-    `hunderstorm with heavy drizzle`
+    response.weather[0].description === `thunderstorm with heavy rain` ||
+    response.weather[0].description === `thunderstorm with drizzle` ||
+    response.weather[0].description === `hunderstorm with heavy drizzle`
   ) {
     return `⛈`;
   } else if (
     response.weather[0].description === `light rain` ||
-    `moderate rain` ||
-    `heavy intensity rain` ||
-    `very heavy rain` ||
-    `extreme rain`
+    response.weather[0].description === `moderate rain` ||
+    response.weather[0].description === `heavy intensity rain` ||
+    response.weather[0].description === `very heavy rain` ||
+    response.weather[0].description === `extreme rain`
   ) {
     return `🌦`;
   } else if (
     response.weather[0].description === `freezing rain` ||
-    `sleet` ||
-    `light shower sleet` ||
-    `shower sleet` ||
-    `light rain and snow` ||
-    `rain and snow`
+    response.weather[0].description === `sleet` ||
+    response.weather[0].description === `light shower sleet` ||
+    response.weather[0].description === `shower sleet` ||
+    response.weather[0].description === `light rain and snow` ||
+    response.weather[0].description === `rain and snow`
   ) {
     return `🌨`;
   } else if (
     response.weather[0].description === ` light snow ` ||
-    `snow` ||
-    `heavy snow` ||
-    `light shower snow` ||
-    `shower snow` ||
-    `heavy shower snow`
+    response.weather[0].description === `snow` ||
+    response.weather[0].description === `heavy snow` ||
+    response.weather[0].description === `light shower snow` ||
+    response.weather[0].description === `shower snow` ||
+    response.weather[0].description === `heavy shower snow`
   ) {
     return `❄️`;
   } else if (
     response.weather[0].description === `thunderstorm with light rain` ||
-    `light thunderstorm` ||
-    `thunderstorm` ||
-    `heavy thunderstorm` ||
-    `ragged thunderstorm` ||
-    `thunderstorm with light drizzle`
+    response.weather[0].description === `light thunderstorm` ||
+    response.weather[0].description === `thunderstorm` ||
+    response.weather[0].description === `heavy thunderstorm` ||
+    response.weather[0].description === `ragged thunderstorm` ||
+    response.weather[0].description === `thunderstorm with light drizzle`
   ) {
     return `🌩`;
   } else if (
     response.weather[0].description === `mist` ||
-    `smoke` ||
-    `haze` ||
-    `sand/ dust whirls` ||
-    `fog` ||
-    `sand` ||
-    `dust` ||
-    `volcanic ash`
+    response.weather[0].description === `smoke` ||
+    response.weather[0].description === `haze` ||
+    response.weather[0].description === `sand/ dust whirls` ||
+    response.weather[0].description === `fog` ||
+    response.weather[0].description === `sand` ||
+    response.weather[0].description === `dust` ||
+    response.weather[0].description === `volcanic ash`
   ) {
     return `🌫`;
   } else if (
     response.weather[0].description === `light intensity drizzle` ||
-    `drizzle` ||
-    `heavy intensity drizzle` ||
-    `light intensity drizzle rain` ||
-    `drizzle rain` ||
-    `heavy intensity drizzle rain` ||
-    `shower rain and drizzle` ||
-    `heavy shower rain and drizzle` ||
-    `shower drizzle` ||
-    `light intensity shower rain` ||
-    `shower rain` ||
-    `heavy intensity shower rain` ||
-    `ragged shower rain`
+    response.weather[0].description === `drizzle` ||
+    response.weather[0].description === `heavy intensity drizzle` ||
+    response.weather[0].description === `light intensity drizzle rain` ||
+    response.weather[0].description === `drizzle rain` ||
+    response.weather[0].description === `heavy intensity drizzle rain` ||
+    response.weather[0].description === `shower rain and drizzle` ||
+    response.weather[0].description === `heavy shower rain and drizzle` ||
+    response.weather[0].description === `shower drizzle` ||
+    response.weather[0].description === `light intensity shower rain` ||
+    response.weather[0].description === `shower rain` ||
+    response.weather[0].description === `heavy intensity shower rain` ||
+    response.weather[0].description === `ragged shower rain`
   ) {
     return `🌧`;
   } else {
