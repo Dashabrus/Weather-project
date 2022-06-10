@@ -69,30 +69,30 @@ function showWeather(response) {
   celsiusTemp = Math.round(response.data.main.temp);
 
   let emojiiElement = document.querySelector(`.emojii_main`);
-  emojiiElement.innerHTML = getEmojii(response);
+  emojiiElement.innerHTML = getEmojii(response.data);
   getForecast(response.data.coord);
 }
 
 function getEmojii(response) {
-  if (response.data.weather[0].description === `clear sky`) {
+  if (response.weather[0].description === `clear sky`) {
     return `☀️`;
-  } else if (response.data.weather[0].description === `few clouds`) {
+  } else if (response.weather[0].description === `few clouds`) {
     return `🌤`;
-  } else if (response.data.weather[0].description === `scattered clouds`) {
+  } else if (response.weather[0].description === `scattered clouds`) {
     return `⛅️`;
-  } else if (response.data.weather[0].description === `broken clouds`) {
+  } else if (response.weather[0].description === `broken clouds`) {
     return `🌥`;
-  } else if (response.data.weather[0].description === `overcast clouds`) {
+  } else if (response.weather[0].description === `overcast clouds`) {
     return `☁️`;
   } else if (
-    response.data.weather[0].description === `thunderstorm with rain` ||
+    response.weather[0].description === `thunderstorm with rain` ||
     `thunderstorm with heavy rain` ||
     `thunderstorm with drizzle` ||
     `hunderstorm with heavy drizzle`
   ) {
     return `⛈`;
   } else if (
-    response.data.weather[0].description === `light rain` ||
+    response.weather[0].description === `light rain` ||
     `moderate rain` ||
     `heavy intensity rain` ||
     `very heavy rain` ||
@@ -100,7 +100,7 @@ function getEmojii(response) {
   ) {
     return `🌦`;
   } else if (
-    response.data.weather[0].description === `freezing rain` ||
+    response.weather[0].description === `freezing rain` ||
     `sleet` ||
     `light shower sleet` ||
     `shower sleet` ||
@@ -109,7 +109,7 @@ function getEmojii(response) {
   ) {
     return `🌨`;
   } else if (
-    response.data.weather[0].description === ` light snow ` ||
+    response.weather[0].description === ` light snow ` ||
     `snow` ||
     `heavy snow` ||
     `light shower snow` ||
@@ -118,7 +118,7 @@ function getEmojii(response) {
   ) {
     return `❄️`;
   } else if (
-    response.data.weather[0].description === `thunderstorm with light rain` ||
+    response.weather[0].description === `thunderstorm with light rain` ||
     `light thunderstorm` ||
     `thunderstorm` ||
     `heavy thunderstorm` ||
@@ -127,7 +127,7 @@ function getEmojii(response) {
   ) {
     return `🌩`;
   } else if (
-    response.data.weather[0].description === `mist` ||
+    response.weather[0].description === `mist` ||
     `smoke` ||
     `haze` ||
     `sand/ dust whirls` ||
@@ -138,7 +138,7 @@ function getEmojii(response) {
   ) {
     return `🌫`;
   } else if (
-    response.data.weather[0].description === `light intensity drizzle` ||
+    response.weather[0].description === `light intensity drizzle` ||
     `drizzle` ||
     `heavy intensity drizzle` ||
     `light intensity drizzle rain` ||
