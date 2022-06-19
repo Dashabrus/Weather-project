@@ -20,10 +20,10 @@ form {
 }
 
 #page {
-  position: relative;
-  display: block;
-  left: 1240px;
-  bottom: 270px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 48px 50px;
 }
 
 .form-control {
@@ -45,7 +45,6 @@ form {
   background: rgb(253, 228, 132, 0.2);
   border: 1px solid #98999a;
   padding: 3px 0px;
-  width: 100%;
   width: 100px;
   border-radius: 10px;
   text-align: center;
