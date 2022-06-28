@@ -126,3 +126,9 @@ form {
 .current_temp {
   font-size: 60px;
 }
+
+.relation {
+  position: absolute;
+  top: 630px;
+  left: 0px;
+}
