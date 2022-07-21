@@ -58,15 +58,17 @@ form {
 
 .hl {
   margin: 0px 13px 30px;
+  font-weight: 200;
+  font-size: 18px;
 }
 .current_dt {
   font-size: 20px;
 }
 
 .climate {
-  position: relative;
-  left: 685px;
-  bottom: 55px;
+  font-size: 18px;
+  font-weight: 100;
+  margin-top: 130px;
 }
 
 .card-body {
@@ -125,10 +127,4 @@ form {
 
 .current_temp {
   font-size: 60px;
-}
-
-.relation {
-  position: absolute;
-  top: 630px;
-  left: 0px;
 }

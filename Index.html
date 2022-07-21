@@ -16,52 +16,64 @@
   </head>
   <body>
     <div class="mainBody">
-      <h1 id="heading"></h1>
-      <p class="currentdt"></p>
-      <div class="current_temp">
-        <span id="current-Number"></span>
-        <span class="units">
-          <a href="#" id="celsius" class="active">°C</a>&#124;<a
-            href="#"
-            id="fahrenheit"
-            >°F</a
-          >
-        </span>
+      <div class="row justify-content-between">
+        <div class="col-8">
+          <h1 id="heading"></h1>
+          <p class="currentdt"></p>
+        </div>
+        <div class="col-4">
+          <form class="city-form">
+            <input
+              type="text"
+              class="form-control"
+              id="formInput"
+              placeholder="🔍 Search for a city..."
+              autocomplete="off"
+            />
+          </form>
+          <span id="page">
+            <button class="currentLocation">📍 Location</button>
+          </span>
+        </div>
       </div>
-      <div class="hl"></div>
-      <p class="emojii_main"></p>
-      <div class="description"></div>
-      <form class="city-form">
-        <input
-          type="text"
-          class="form-control"
-          id="formInput"
-          placeholder="🔍 Search for a city..."
-          autocomplete="off"
-        />
-      </form>
-      <span id="page">
-        <button class="currentLocation">📍 Location</button>
-      </span>
-      <div class="feels"></div>
-      <div class="climate">
-        <span id="windSpeed"></span>
-        <br />
-        <span id="hum"></span>
+      <div class="row">
+        <div class="col-7">
+          <div class="current_temp">
+            <span id="current-Number"></span>
+            <span class="units">
+              <a href="#" id="celsius" class="active">°C</a>&#124;<a
+                href="#"
+                id="fahrenheit"
+                >°F</a
+              >
+            </span>
+          </div>
+
+          <div class="hl"></div>
+          <p class="emojii_main ms-3"></p>
+          <div class="description ms-5"></div>
+          <div class="feels mb-5"></div>
+        </div>
+        <div class="col-5 climate">
+          <span id="windSpeed"></span>
+          <br />
+          <span id="hum"></span>
+        </div>
       </div>
       <div class="container">
-     <div class="weather-forecast" id="forecast"></div>
+        <div class="weather-forecast" id="forecast"></div>
+      </div>
     </div>
-    <div class="relation">
-    <a
-      href="https://github.com/Dashabrus/Weather-project"
-      target="_blank"
-      rel="noreferrer"
-      id="link"
-      >Open-source code</a
-    >
-    by Dasha Brus
-  </div>
+    <div>
+      <a
+        href="https://github.com/Dashabrus/Weather-project"
+        target="_blank"
+        rel="noreferrer"
+        id="link"
+        >Open-source code</a
+      >
+      by Dasha Brus
+    </div>
     <script src="Wireframe_js.js"></script>
   </body>
 </html>
